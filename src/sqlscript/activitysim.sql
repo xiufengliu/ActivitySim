@@ -1,5 +1,490 @@
 -- http://sqlformat.darold.net/
 ﻿
+-- Table: public.cc_activity_real
+
+-- DROP TABLE public.cc_activity_real;
+
+CREATE TABLE public.cc_activity_real
+(
+  fid integer,
+  obs_id integer,
+  ts_no integer,
+  state integer
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.cc_activity_real
+  OWNER TO xiuli;
+
+CREATE TABLE public.cc_activity_types
+(
+  id integer NOT NULL,
+  abbr character varying(1),
+  name character varying(26),
+  power_consumption double precision,
+  CONSTRAINT cc_activity_types_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.cc_activity_types
+  OWNER TO xiuli;
+
+
+CREATE TABLE public.cc_activity_subtypes
+(
+  id integer NOT NULL,
+  name character varying(36),
+  parent integer,
+  CONSTRAINT cc_activity_subtypes_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.cc_activity_subtypes
+  OWNER TO xiuli;
+
+CREATE TABLE public.cc_activity_syn
+(
+  fid integer,
+  obs_id integer,
+  ts_no integer,
+  state integer
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.cc_activity_syn
+  OWNER TO xiuli;
+
+
+CREATE TABLE public.cc_activity_transit_1
+(
+  fid integer,
+  obs_id integer,
+  ts_no integer,
+  cur_state integer,
+  next_state integer
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.cc_activity_transit_1
+  OWNER TO xiuli;
+
+CREATE TABLE public.cc_makov_transition_matrix
+(
+  id integer,
+  i integer,
+  j integer,
+  count integer,
+  prob numeric
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.cc_makov_transition_matrix
+  OWNER TO xiuli;
+
+CREATE TABLE public.cc_start_activities_all
+(
+  hour integer,
+  activity integer,
+  "time" numeric
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.cc_start_activities_all
+  OWNER TO xiuli;
+
+CREATE TABLE public.cc_start_activities_summary
+(
+  hour integer,
+  activity integer,
+  row_count bigint,
+  distinct_values bigint,
+  mean double precision,
+  variance double precision,
+  min double precision,
+  max double precision,
+  first_quartile double precision,
+  median double precision,
+  third_quartile double precision,
+  most_frequent_values text[]
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.cc_start_activities_summary
+  OWNER TO xiuli;
+
+CREATE TABLE public.cc_transition
+(
+  fid integer,
+  obs_id integer,
+  ts_no1 integer,
+  ts_no2 integer,
+  activity1 integer,
+  activity2 integer
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.cc_transition
+  OWNER TO xiuli;
+
+CREATE TABLE public.cc_families
+(
+  fid integer,
+  ip_age integer,
+  p1_age integer,
+  p2_age integer,
+  p3_age integer,
+  p4_age integer,
+  p5_age integer,
+  p6_age integer,
+  family_size integer
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.cc_families
+  OWNER TO xiuli;
+
+
+CREATE TABLE public.cc_background
+(
+  fid integer,
+  ip_alder integer,
+  ip_koen integer,
+  ip_aktivitetsstatus integer,
+  p1_alder integer,
+  p1_koen integer,
+  p1_aktivitetsstatus integer,
+  p1_ip_relation integer,
+  p2_alder integer,
+  p2_koen integer,
+  p2_aktivitetsstatus integer,
+  p2_ip_relation integer,
+  p3_alder integer,
+  p3_koen integer,
+  p3_aktivitetsstatus integer,
+  p3_ip_relation integer,
+  p4_alder integer,
+  p4_koen integer,
+  p4_aktivitetsstatus integer,
+  p4_ip_relation integer,
+  p5_alder integer,
+  p5_koen integer,
+  p5_aktivitetsstatus integer,
+  p5_ip_relation integer,
+  p6_alder integer,
+  p6_koen integer,
+  p6_aktivitetsstatus integer,
+  p6_ip_relation integer,
+  antalboernuskole integer,
+  antaldeleboern integer,
+  antalhjbboern integer,
+  antalpersoner integer,
+  defantalboern integer,
+  defipaktstatus integer,
+  defsamlaktstatus integer,
+  spm10 integer,
+  spm11ip integer,
+  spm11sam integer,
+  spm12aip integer,
+  spm12asam integer,
+  spm12ip integer,
+  spm12sam integer,
+  spm13ip integer,
+  spm13sam integer,
+  spm14ip integer,
+  spm14sam integer,
+  spm15ip integer,
+  spm15sam integer,
+  spm15y_ip integer,
+  spm15y_sam integer,
+  spm16ip integer,
+  spm16sam integer,
+  spm17ip integer,
+  spm17sam integer,
+  spm18ip integer,
+  spm18sam integer,
+  spm19ip integer,
+  spm19sam integer,
+  spm20fraip integer,
+  spm20frasam integer,
+  spm20tilip integer,
+  spm20tilsam integer,
+  spm21ip integer,
+  spm21sam integer,
+  spm22ip integer,
+  spm22sam integer,
+  spm23ip integer,
+  spm23sam integer,
+  spm24ip integer,
+  spm24sam integer,
+  spm25ip integer,
+  spm25sam integer,
+  spm26ip integer,
+  spm26sam integer,
+  spm27ip integer,
+  spm27sam integer,
+  spm28ip integer,
+  spm28sam integer,
+  spm29 integer,
+  spm30 integer,
+  spm31 integer,
+  spm32 integer,
+  spm33fle integer,
+  spm33min integer,
+  spm34ip integer,
+  spm34sam integer,
+  spm35_ip integer,
+  spm35_sam integer,
+  spm36_ip integer,
+  spm36_sam integer,
+  spm37 integer,
+  spm381 integer,
+  spm382 integer,
+  spm383 integer,
+  spm384 integer,
+  spm385 integer,
+  spm38_elm_1 integer,
+  spm38_elm_2 integer,
+  spm38_elm_3 integer,
+  spm38_elm_4 integer,
+  spm38_elm_5 integer,
+  spm39a1 integer,
+  spm39a2 integer,
+  spm39a3 integer,
+  spm39a4 integer,
+  spm39a5 integer,
+  spm39a_elm_1 integer,
+  spm39a_elm_2 integer,
+  spm39a_elm_3 integer,
+  spm39a_elm_4 integer,
+  spm39a_elm_5 integer,
+  spm39b1 integer,
+  spm39b2 integer,
+  spm39b3 integer,
+  spm39b4 integer,
+  spm39b5 integer,
+  spm39b_elm_1 integer,
+  spm39b_elm_2 integer,
+  spm39b_elm_3 integer,
+  spm39b_elm_4 integer,
+  spm39b_elm_5 integer,
+  spm39c1 integer,
+  spm39c2 integer,
+  spm39c3 integer,
+  spm39c4 integer,
+  spm39c5 integer,
+  spm39c_elm_1 integer,
+  spm39c_elm_2 integer,
+  spm39c_elm_3 integer,
+  spm39c_elm_4 integer,
+  spm39c_elm_5 integer,
+  spm39d1 integer,
+  spm39d2 integer,
+  spm39d3 integer,
+  spm39d4 integer,
+  spm39d5 integer,
+  spm39d_elm_1 integer,
+  spm39d_elm_2 integer,
+  spm39d_elm_3 integer,
+  spm39d_elm_4 integer,
+  spm39d_elm_5 integer,
+  spm39e1 integer,
+  spm39e2 integer,
+  spm39e3 integer,
+  spm39e4 integer,
+  spm39e5 integer,
+  spm39e_elm_1 integer,
+  spm39e_elm_2 integer,
+  spm39e_elm_3 integer,
+  spm39e_elm_4 integer,
+  spm39e_elm_5 integer,
+  spm39f1 integer,
+  spm39f2 integer,
+  spm39f3 integer,
+  spm39f4 integer,
+  spm39f5 integer,
+  spm39f_elm_1 integer,
+  spm39f_elm_2 integer,
+  spm39f_elm_3 integer,
+  spm39f_elm_4 integer,
+  spm39f_elm_5 integer,
+  spm39g1 integer,
+  spm39g2 integer,
+  spm39g3 integer,
+  spm39g4 integer,
+  spm39g5 integer,
+  spm39g_elm_1 integer,
+  spm39g_elm_2 integer,
+  spm39g_elm_3 integer,
+  spm39g_elm_4 integer,
+  spm39g_elm_5 integer,
+  spm39h1 integer,
+  spm39h2 integer,
+  spm39h3 integer,
+  spm39h4 integer,
+  spm39h5 integer,
+  spm39h_elm_1 integer,
+  spm39h_elm_2 integer,
+  spm39h_elm_3 integer,
+  spm39h_elm_4 integer,
+  spm39h_elm_5 integer,
+  spm39i1 integer,
+  spm39i2 integer,
+  spm39i3 integer,
+  spm39i4 integer,
+  spm39i5 integer,
+  spm39i_elm_1 integer,
+  spm39i_elm_2 integer,
+  spm39i_elm_3 integer,
+  spm39i_elm_4 integer,
+  spm39i_elm_5 integer,
+  spm39j1 integer,
+  spm39j2 integer,
+  spm39j3 integer,
+  spm39j4 integer,
+  spm39j5 integer,
+  spm39j_elm_1 integer,
+  spm39j_elm_2 integer,
+  spm39j_elm_3 integer,
+  spm39j_elm_4 integer,
+  spm39j_elm_5 integer,
+  spm39k1 integer,
+  spm39k2 integer,
+  spm39k3 integer,
+  spm39k4 integer,
+  spm39k5 integer,
+  spm39k_elm_1 integer,
+  spm39k_elm_2 integer,
+  spm39k_elm_3 integer,
+  spm39k_elm_4 integer,
+  spm39k_elm_5 integer,
+  spm3ip integer,
+  spm3ip_antal integer,
+  spm3sam integer,
+  spm3sam_antal integer,
+  spm40a integer,
+  spm40b integer,
+  spm40c integer,
+  spm40d integer,
+  spm41_andre_barn1 integer,
+  spm41_andre_barn2 integer,
+  spm41_andre_barn3 integer,
+  spm41_ipselv_barn1 integer,
+  spm41_ipselv_barn2 integer,
+  spm41_ipselv_barn3 integer,
+  spm41_samlever_barn1 integer,
+  spm41_samlever_barn2 integer,
+  spm41_samlever_barn3 integer,
+  spm41_stboern_barn1 integer,
+  spm41_stboern_barn2 integer,
+  spm41_stboern_barn3 integer,
+  spm42a integer,
+  spm42a_betalt integer,
+  spm42a_timer integer,
+  spm42b integer,
+  spm42b_betalt integer,
+  spm42b_timer integer,
+  spm42c integer,
+  spm42c_betalt integer,
+  spm42c_timer integer,
+  spm43ip integer,
+  spm43ip_timer integer,
+  spm43sam integer,
+  spm43sam_timer integer,
+  spm44 integer,
+  spm45 integer,
+  spm46a integer,
+  spm46b integer,
+  spm46c integer,
+  spm47a integer,
+  spm47b integer,
+  spm47c integer,
+  spm48 integer,
+  spm49a integer,
+  spm49b integer,
+  spm49c integer,
+  spm49d integer,
+  spm4_barn1 integer,
+  spm4_barn2 integer,
+  spm4_barn3 integer,
+  spm5 integer,
+  spm50 integer,
+  spm51 integer,
+  spm52 integer,
+  spm53 integer,
+  spm54_ip integer,
+  spm54_sam integer,
+  spm55_ip integer,
+  spm55_sam integer,
+  spm56 integer,
+  spm6 integer,
+  spm7 integer,
+  spm801 integer,
+  spm802 integer,
+  spm803 integer,
+  spm804 integer,
+  spm805 integer,
+  spm806 integer,
+  spm807 integer,
+  spm808 integer,
+  spm809 integer,
+  spm810 integer,
+  spm811 integer,
+  spm812 integer,
+  spm813 integer,
+  spm814 integer,
+  spm815 integer,
+  spm8_elm_1 integer,
+  spm8_elm_10 integer,
+  spm8_elm_11 integer,
+  spm8_elm_12 integer,
+  spm8_elm_13 integer,
+  spm8_elm_14 integer,
+  spm8_elm_15 integer,
+  spm8_elm_2 integer,
+  spm8_elm_3 integer,
+  spm8_elm_4 integer,
+  spm8_elm_5 integer,
+  spm8_elm_6 integer,
+  spm8_elm_7 integer,
+  spm8_elm_8 integer,
+  spm8_elm_9 integer,
+  spm8bil integer,
+  spm8mobil integer,
+  spm8pc integer,
+  spm8tlfvar1 integer,
+  spm8tlfvar10 integer,
+  spm8tlfvar11 integer,
+  spm8tlfvar12 integer,
+  spm8tlfvar13 integer,
+  spm8tlfvar14 integer,
+  spm8tlfvar15 integer,
+  spm8tlfvar2 integer,
+  spm8tlfvar3 integer,
+  spm8tlfvar4 integer,
+  spm8tlfvar5 integer,
+  spm8tlfvar6 integer,
+  spm8tlfvar7 integer,
+  spm8tlfvar8 integer,
+  spm8tlfvar9 integer,
+  spm8tv integer,
+  spm9 integer
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.cc_background
+  OWNER TO xiuli;
+  
 create table tmp_test as
        select hour||'-'||activity as hc,
               time
