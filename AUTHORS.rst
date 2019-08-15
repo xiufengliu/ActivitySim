@@ -2,4 +2,4 @@
 Contributors
 ============
 
-* groupme@gmail.com <groupme@gmail.com>
+* Xiufeng Liu (xiuli@dtu.dk <xiuli@dtu.dk>)

@@ -21,8 +21,8 @@ import logging
 
 from activitysim import __version__
 
-__author__ = "groupme@gmail.com"
-__copyright__ = "groupme@gmail.com"
+__author__ = "Xiufeng Liu"
+__copyright__ = "xiuli@dtu.dk"
 __license__ = "mit"
 
 _logger = logging.getLogger(__name__)
